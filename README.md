@@ -1,4 +1,3 @@
----
 
 # EduConnect Backend
 
