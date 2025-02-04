@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="store.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2106"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="3" parent="0"/><expanded_item id="4" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="principals" custom_title="0" dock_id="8" table="4,10:mainprincipals"/><table title="teachers" custom_title="0" dock_id="7" table="4,8:mainteachers"/><table title="principals" custom_title="0" dock_id="6" table="4,10:mainprincipals"/><table title="users" custom_title="0" dock_id="5" table="4,5:mainusers"/><table title="users" custom_title="0" dock_id="4" table="4,5:mainusers"/><table title="principals" custom_title="0" dock_id="3" table="4,10:mainprincipals"/><table title="teachers" custom_title="0" dock_id="2" table="4,8:mainteachers"/><table title="alembic_version" custom_title="0" dock_id="1" table="4,15:mainalembic_version"/><table title="assignments" custom_title="0" dock_id="9" table="4,11:mainassignments"/><dock_state state="000000ff00000000fd00000001000000020000043c000002befc0100000001fc000000000000043c0000011e00fffffffa000000080100000009fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000011e00fffffffb000000160064006f0063006b00420072006f00770073006500330100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500340100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500350100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500360100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500370100000000ffffffff0000011e00fffffffb000000160064006f0063006b00420072006f00770073006500380100000000ffffffff0000011800fffffffb000000160064006f0063006b00420072006f00770073006500390100000000ffffffff0000011800ffffff000002740000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="alembic_version" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="101"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="assignments" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort><column index="3" mode="0"/></sort><column_widths><column index="1" value="29"/><column index="2" value="70"/><column index="3" value="70"/><column index="4" value="140"/><column index="5" value="40"/><column index="6" value="54"/><column index="7" value="210"/><column index="8" value="156"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="principals" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="52"/><column index="3" value="210"/><column index="4" value="210"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="teachers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="52"/><column index="3" value="210"/><column index="4" value="210"/><column index="5" value="74"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="users" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="78"/><column index="3" value="163"/><column index="4" value="210"/><column index="5" value="210"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">-- ALTER TABLE teachers ADD COLUMN principal_id INTEGER;
+UPDATE teachers SET principal_id = 2 WHERE user_id = 4;
+PRAGMA table_info(teachers);
+SELECT id, user_id, principal_id, created_at, updated_at
+FROM teachers
+WHERE principal_id = 2;
+
+INSERT INTO teachers (user_id, principal_id, created_at, updated_at)
+VALUES (5, 2, '2025-01-27 18:00:00', '2025-01-27 18:00:00');
+SELECT id, user_id, principal_id, created_at, updated_at
+FROM teachers;
+-- 
+SELECT * FROM assignments;
+UPDATE assignments
+SET grade = 'A', state = 'GRADED', updated_at = CURRENT_TIMESTAMP
+WHERE id = 1 AND teacher_id = 1;
+DELETE FROM assignments WHERE id = 5;
+-- 
+SELECT * FROM assignments;
+SELECT * FROM assignments WHERE teacher_id = 2;
+
+-- --This is the command for API 1
+SELECT id, user_id, created_at, updated_at
+FROM teachers
+WHERE principal_id = 2; 
+
+-- 
+-- --This is command for API 2
+UPDATE assignments
+SET grade = 'E', state = 'GRADED', updated_at = CURRENT_TIMESTAMP
+WHERE id = 1
+AND teacher_id = 1;
+
+
+SELECT * from assignments;
+SELECT * from teachers;
+SELECT * from students;
+SELECT * from principals;
+SELECT * from users;
+
+
+
+SELECT grade, COUNT(*) AS assignment_count
+FROM assignments
+GROUP BY grade
+ORDER BY grade;
+
+-- Write query to find the number of grade A's given by the teacher who has graded the most assignments
+
+WITH teacher_assignments AS (
+    SELECT teacher_id, COUNT(*) AS num_assignments
+    FROM assignments
+    WHERE grade IS NOT NULL
+    GROUP BY teacher_id
+),
+max_graded_teacher AS (
+    SELECT teacher_id
+    FROM teacher_assignments
+    ORDER BY num_assignments DESC
+    LIMIT 1
+)
+
+SELECT COUNT(*) AS grade_A_assignments
+FROM assignments
+WHERE grade = 'C'
+  AND teacher_id = (SELECT teacher_id FROM max_graded_teacher);
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
